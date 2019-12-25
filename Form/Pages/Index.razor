@@ -1,0 +1,37 @@
+﻿@page "/"
+@using System.Globalization
+<title>Web forms</title>
+
+
+<form>
+    <input @bind-value="FirstName" placeholder="FirstName" />
+    <input @bind-value="LastName" placeholder="LastName" />
+    <input @bind-value="Email" placeholder="Email" />
+    <input @bind-value="Number" placeholder="Number" />
+    <input @bind-value="Country" placeholder="Country">
+
+</form>
+<button class="btn btn-primary" @onclick="IsOk">Submit</button>
+<h1>@result</h1>
+@code{
+    private string FirstName { get; set; }
+    private string LastName { get; set; }
+    private string Email { get; set; }
+    private string Number { get; set; }
+    private string Country { get; set; }
+    private string result { get; set; }
+    private void IsOk()
+    {
+        try
+        {
+            if (Email.Contains('@') && FirstName.Length != 0 && LastName.Length != 0 && Email.Length != 0 && Number.Length == 11 && Country.Length != 0) result = "Ok";
+            else { result = "Error"; }
+        }
+        catch (System.NullReferenceException e)
+        {
+            result = "Error";
+        }
+    }
+
+}
+
